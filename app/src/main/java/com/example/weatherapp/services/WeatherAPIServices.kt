@@ -8,9 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class WeatherAPIServices {
 
-    //http://api.openweather.org/data/2.5/weather?q=bingo1&APPID=5737d899c1f50de85d6ae6541925d3a8
+    //http://api.openweathermap.org/data/2.5/weather?q=delhi&APPID=5737d899c1f50de85d6ae6541925d3a8
 
-    private val baseUrl = "http://api.openweather.org/"
+    private val baseUrl = "http://api.openweathermap.org/"
 
     private val api = Retrofit.Builder()
         .baseUrl(baseUrl)

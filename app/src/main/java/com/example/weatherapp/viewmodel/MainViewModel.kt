@@ -53,9 +53,11 @@ private fun getDataFromAPI(cityName : String) {
 
             try {
                   val tempData = deferredValue.await()
+                  Log.i(TAG, "${tempData}")
                   _statusError.postValue(false)
-                  _statusLoading.postValue(true)
+                  _statusLoading.postValue(false)
                   _weather_data.postValue(tempData)
+                  Log.i(TAG, "Succesful run")
 
 
             } catch (error: Throwable){
