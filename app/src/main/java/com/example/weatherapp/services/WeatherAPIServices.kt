@@ -2,6 +2,7 @@ package com.example.weatherapp.services
 
 import com.example.weatherapp.model.WeatherModel
 import kotlinx.coroutines.Deferred
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,7 +19,7 @@ class WeatherAPIServices {
         .build()
         .create(WeatherAPI::class.java)
 
-    suspend fun getDataService(cityName: String): WeatherModel {
+    suspend fun getDataService(cityName: String): Response<WeatherModel> {
         return api.getDataAsync(cityName)
     }
 }

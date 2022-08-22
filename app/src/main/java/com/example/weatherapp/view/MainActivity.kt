@@ -9,6 +9,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.viewmodel.MainViewModel
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         val formatter: DateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
         binding.updatedAt.setText(dateTime.format(formatter))
 
-        getLiveData()
+        getLiveData(cityName)
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.tvError.visibility = View.GONE
@@ -73,14 +74,14 @@ class MainActivity : AppCompatActivity() {
             SET.putString("cityName",cityName)
             SET.apply()
             mainViewModel.refreshData(cityName)
-            getLiveData()
+            getLiveData(cityName)
             Log.i(TAG,"onCreate:  " + cityName)
         }
 
 
     }
 
-    private fun getLiveData(){
+    private fun getLiveData(cityName: String){
         mainViewModel.weather_data.observe(this, androidx.lifecycle.Observer { data ->
             data?.let {
                 binding.llData.visibility = View.VISIBLE
@@ -88,14 +89,19 @@ class MainActivity : AppCompatActivity() {
                 val tvCityName = data.name
                 binding.address.setText("$tvCityName, $tvCityCode")
 
+                Glide.with(this)
+                    .load("https://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
+                    .into(binding.countryIcon)
+
                 val tempInt = data.main.temp.toInt()
                 binding.tvDegree.text = "$tempInt°C"
 
                 binding.windSpeed.text = data.wind.speed.toString()
                 binding.pressureValue.text = data.main.pressure.toString()
-                binding.humidityValue.text = data.main.humidity.toString()
-                binding.sunriseTime.text = data.sys.sunrise.toString()
-                binding.sunsetTime.text = data.sys.sunset.toString()
+                binding.humidityValue.text = "${data.main.humidity.toString()}%"
+                binding.countryText.text = cityName.substring(0,1).uppercase() + cityName.substring(1)
+                binding.countryCode.text = data.sys.country
+                binding.longitudeValue.text = data.coord.lon.toString()
 
             }
 

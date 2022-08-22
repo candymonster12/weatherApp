@@ -47,17 +47,17 @@ private fun getDataFromAPI(cityName : String) {
 
             _statusLoading.postValue(true)
 
-            val deferredValue = async(Dispatchers.IO) {
-                  weatherApiService.getDataService(cityName)
-            }
+//            val deferredValue = async(Dispatchers.IO) {
+//
+//            }
 
             try {
-                  val tempData = deferredValue.await()
-                  Log.i(TAG, "${tempData}")
+                  val tempData = weatherApiService.getDataService(cityName)
+                  Log.i(TAG, "$tempData")
                   _statusError.postValue(false)
                   _statusLoading.postValue(false)
-                  _weather_data.postValue(tempData)
-                  Log.i(TAG, "Succesful run")
+                  _weather_data.postValue(tempData.body())
+                  Log.i(TAG, "Successful run")
 
 
             } catch (error: Throwable){
@@ -70,3 +70,4 @@ private fun getDataFromAPI(cityName : String) {
 
       }
 }
+

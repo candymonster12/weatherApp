@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,6 +14,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -49,35 +52,46 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/idTILCityName"
                     android:background="@drawable/radius"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="5" >
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/idTILCity"
+                        android:layout_weight="4.5"
                         app:boxStrokeWidth="0dp"
+                        android:hint="City Name"
+                        app:hintTextColor="@color/white"
+                        android:textColorHint="@color/white"
                         app:boxStrokeWidthFocused="0dp"
                         app:endIconMode="clear_text">
 
-                        <EditText
+
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_city_name"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:background="@drawable/radius"
-                            android:hint="City Name"
+                            android:importantForAutofill="no"
                             android:inputType="text"
-                            android:lines="1"
-                            android:maxLines="1" />
+                            android:paddingLeft="8dp"
+                            android:singleLine="true"
+                            android:textSize="14sp" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                     <ImageView
                         android:id="@+id/img_search_city"
-                        android:layout_width="50dp"
+                        android:layout_width="7dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:padding="10dp"
+                        android:layout_weight="0.5"
                         android:src="@drawable/ic_baseline_search_24" />
 
                 </LinearLayout>
@@ -97,7 +111,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:layout_marginBottom="180dp"
+                        android:layout_marginBottom="130dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -141,8 +155,8 @@
                         android:id="@+id/detailsContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
                         android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -164,28 +178,27 @@
 
 
                                 <ImageView
-                                    android:id="@+id/sunrise_icon"
+                                    android:id="@+id/country_icon"
                                     android:layout_width="35dp"
-                                    android:layout_height="25dp"
-                                    android:src="@drawable/weather_sunrise_icon" />
+                                    android:layout_height="25dp" />
 
                                 <Space
                                     android:layout_width="wrap_content"
                                     android:layout_height="5dp" />
 
                                 <TextView
-                                    android:id="@+id/sunrise_text"
+                                    android:id="@+id/country_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Sunrise"
+                                    android:text="Delhi"
                                     android:textSize="12dp"
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/sunrise_time"
+                                    android:id="@+id/country_code"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="06:40 AM"
+                                    android:text="IN"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />
 
@@ -207,28 +220,28 @@
                                 android:padding="8dp">
 
                                 <ImageView
-                                    android:id="@+id/sunset_icon"
+                                    android:id="@+id/humidity_icon"
                                     android:layout_width="35dp"
                                     android:layout_height="25dp"
-                                    android:src="@drawable/weather_sunset_icon" />
+                                    android:src="@drawable/humidity" />
 
                                 <Space
                                     android:layout_width="wrap_content"
                                     android:layout_height="5dp" />
 
                                 <TextView
-                                    android:id="@+id/sunset_text"
+                                    android:id="@+id/humidity_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Sunset"
+                                    android:text="Humidity"
                                     android:textSize="12dp"
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/sunset_time"
+                                    android:id="@+id/humidity_value"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="06:37 PM"
+                                    android:text="94%"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />
 
@@ -253,7 +266,7 @@
                                     android:id="@+id/wind_icon"
                                     android:layout_width="35dp"
                                     android:layout_height="25dp"
-                                    android:src="@drawable/weather_windy_icon" />
+                                    android:src="@drawable/wind" />
 
                                 <Space
                                     android:layout_width="wrap_content"
@@ -287,9 +300,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:weightSum="3">
+                            android:weightSum="2">
 
                             <!-- Layout for Pressure-->
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -304,7 +321,7 @@
                                     android:id="@+id/pressure_icon"
                                     android:layout_width="35dp"
                                     android:layout_height="25dp"
-                                    android:src="@drawable/weather_pressure_icon" />
+                                    android:src="@drawable/equator" />
 
                                 <Space
                                     android:layout_width="wrap_content"
@@ -344,25 +361,25 @@
                                 android:padding="8dp">
 
                                 <ImageView
-                                    android:id="@+id/humidity_icon"
+                                    android:id="@+id/longitude_icon"
                                     android:layout_width="35dp"
                                     android:layout_height="25dp"
-                                    android:src="@drawable/weather_humidity_icon" />
+                                    android:src="@drawable/longitude" />
 
                                 <Space
                                     android:layout_width="wrap_content"
                                     android:layout_height="5dp" />
 
                                 <TextView
-                                    android:id="@+id/humidity_text"
+                                    android:id="@+id/longitude_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Humidity"
+                                    android:text="Longitude"
                                     android:textSize="12dp"
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/humidity_value"
+                                    android:id="@+id/longitude_value"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="84"
@@ -375,48 +392,6 @@
                                 android:layout_width="10dp"
                                 android:layout_height="wrap_content" />
 
-                            <!-- Layout for Info -->
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="#3CF1EBF1"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="8dp">
-
-                                <ImageView
-                                    android:id="@+id/info_icon"
-                                    android:layout_width="35dp"
-                                    android:layout_height="25dp"
-                                    android:src="@drawable/weather_info_icon" />
-
-                                <Space
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="5dp" />
-
-                                <TextView
-                                    android:id="@+id/info_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Created By"
-                                    android:textSize="12dp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/info_value"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="CandyGuy"
-                                    android:textSize="14dp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-                            <Space
-                                android:layout_width="10dp"
-                                android:layout_height="wrap_content" />
 
                         </LinearLayout>
 
@@ -426,8 +401,15 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
 
 </layout>
